@@ -24,12 +24,19 @@
         </nav>
         <div id="cuerpo" class="container">
             <div class="row">
-                <div class="col-lg-2 bg-primary">
-                    
+                <div class="col-lg-8 col-lg-offset-2 bg-success">
+                    <select id="ddlBusqueda" class="btn btn-default btn-md col-lg-2">
+                        <option>Isbn</option>
+                        <option>Autor</option>
+                        <option>Titulo</option>
+                        <option>Palabra Clave</option>
+                    </select>
+                    <input type="text" class="form-control-static col-lg-8">
+                    <button type="submit" class="btn btn-default btn-md ">Buscar</button>
                 </div>
-                <div class="col-lg-9 bg-primary col-lg-offset-1">
-                    
-                </div>
+            </div>
+            <div class="row">
+                
             </div>
         </div>
     </body>
