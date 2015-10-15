@@ -30,18 +30,19 @@ public class ControladorLibreria {
     }
 //</editor-fold>
 
-    private void configurarConexion() {
+    public void configurarConexion(String tabla,boolean esSelect) {
         conexion = new Conexion();
         conexion.setNombreBaseDeDatos("jdbc:mysql://localhost/libreria");
-        conexion.setNombreTabla("libro");
+        conexion.setNombreTabla(tabla);
         conexion.setCadenaConexion("com.mysql.jdbc.Driver");
         conexion.setUsuario("root");
         conexion.setPass("");
+        conexion.setEsSelect(esSelect);
     }
 
     public Libro buscarLibro(int isbn) {
         Libro libro = new Libro();
-        configurarConexion();
+        configurarConexion("libro",true);
 
         conexion.setCadenaSQL("SELECT * FROM "
                 + conexion.getNombreTabla()
@@ -65,7 +66,7 @@ public class ControladorLibreria {
 
     public List<Libro> buscarLibros() {
         List<Libro> libros = new ArrayList<>();
-        configurarConexion();
+        configurarConexion("libro",true);
         conexion.setCadenaSQL("SELECT * FROM libro;");
         conexion.setEsSelect(true);
         conexion.conectar();
@@ -84,7 +85,7 @@ public class ControladorLibreria {
     
     public void ingresarLibro(Libro libro) throws Exception{
         if(!existeLibro(libro.getIsbn())){
-            configurarConexion();
+            configurarConexion("libro",true);
             conexion.setEsSelect(false);
             conexion.setCadenaSQL("INSERT INTO libro "
                     + "VALUES(" + libro.getIsbn() + ","
