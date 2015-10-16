@@ -138,14 +138,14 @@ public class Usuario {
 
     public Usuario(String username) {
         this.username = username;
-        leer();
     }
 
     public final boolean leer() {
         ControladorLibreria controlador = new ControladorLibreria();
-        ResultSet resultados = controlador.getConexion().getDbResultSet();
         controlador.configurarConexion("usuario", true);
+        controlador.getConexion().setCadenaSQL("SELECT * from usuario;");
         controlador.getConexion().conectar();
+        ResultSet resultados = controlador.getConexion().getDbResultSet();
 
         try {
             while (resultados.next()) {
@@ -157,19 +157,23 @@ public class Usuario {
                     apellidoMaterno = resultados.getString("apellido_materno");
                     fechaNacimiento = resultados.getDate("fecha_nacimiento");
                     administrador = resultados.getBoolean("administrador");
+                    controlador.getConexion().cerrar();
                     return true;
                 } else {
+                    controlador.getConexion().cerrar();
                     return false;
                 }
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error SQL: " + ex.getMessage());
+            controlador.getConexion().cerrar();
+            System.out.println("Error SQL: " + ex.getMessage());
         }
+        controlador.getConexion().cerrar();
         return false;
     }
 
     public boolean crear() {
-        if (!existeUsuario(this.username)) {
+        if (!existeUsuario()) {
             ControladorLibreria controlador = new ControladorLibreria();
             controlador.configurarConexion("usuario", false);
             controlador.getConexion().setCadenaSQL(
@@ -197,6 +201,7 @@ public class Usuario {
         List<Usuario> usuarios = new ArrayList<>();
         ControladorLibreria controlador = new ControladorLibreria();
         controlador.configurarConexion("usuario", true);
+        controlador.getConexion().setCadenaSQL("SELECT * from usuario;");
         controlador.getConexion().conectar();
         ResultSet resultados = controlador.getConexion().getDbResultSet();
 
@@ -208,12 +213,13 @@ public class Usuario {
                 }
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error SQL: " + ex.getMessage());
+            System.out.println("Error SQL: " + ex.getMessage());
         }
+        controlador.getConexion().cerrar();
         return usuarios;
     }
 
-    public boolean existeUsuario(String username) {
+    public boolean existeUsuario() {
         List<Usuario> usuarios = buscarUsuarios();
         for (Usuario user : usuarios) {
             if (user.getUsername().equals(username)) {
