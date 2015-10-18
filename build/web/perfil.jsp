@@ -6,6 +6,18 @@
         <title>Perfil</title>
     </head>
     <body>
-        <h1>Perfil</h1>
+        <%
+            if(request.getParameter("usuarioActual") != null){
+        %>
+        
+        <%
+            }else{//Fin hay usuario loggeado.
+        %>
+        <script>
+            window.location = "index.jsp";
+        </script>
+        <%
+            }//Fin no hay usuario loggeado.
+        %>
     </body>
 </html>

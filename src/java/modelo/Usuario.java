@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import controlador.ControladorLibreria;
 
 public class Usuario {
