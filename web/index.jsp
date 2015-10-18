@@ -24,12 +24,17 @@
                 <p id="txtBienvenida" class="navbar-text"></p>
             </div>
             <div class="col-lg-offset-9">
-                <form id="header-form" action="index.jsp" method="get">
+                <div class="col-lg-offset-9">
+                <form id="header-form" class="col-lg-4" action="index.jsp" method="get">
                     <button id="btnHeaderLogin" class="btn btn-default btn-lg navbar-btn" 
-                            name="btnHeader" type="submit" value="login">Iniciar Sesión</button>
-                    <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn" name="btnHeader"
-                            type="submit" value="btnPerfil">Perfil</button>
+                            name="btnHeader" type="submit" value="login">Iniciar Sesion</button>
                 </form>
+                <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn col-lg-4 col-lg-offset-3" name="btnHeader"
+                            type="button" value="btnPerfil">Perfil</button>
+                </div>
+                <script>
+                    
+                </script>
             </div>
         </nav>
         <div id="cuerpo" class="container">
@@ -64,12 +69,14 @@
         <nav class="navbar navbar-default container">
             <p class="navbar-text h2">Proyecto Libreria</p>
             <div class="col-lg-offset-9">
-                <form id="header-form" action="index.jsp" method="get">
+                <div class="col-lg-offset-9">
+                <form id="header-form" class="col-lg-4" action="index.jsp" method="get">
                     <button id="btnHeaderLogin" class="btn btn-default btn-lg navbar-btn" 
-                            name="btnHeader" type="submit" value="login">Iniciar Sesión</button>
-                    <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn" name="btnHeader"
-                            type="submit" value="btnPerfil">Perfil</button>
+                            name="btnHeader" type="submit" value="login">Iniciar Sesion</button>
                 </form>
+                <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn col-lg-4 col-lg-offset-3" name="btnHeader"
+                            type="button" value="btnPerfil">Perfil</button>
+                </div>
             </div>
         </nav>
         <div class="container">
@@ -112,12 +119,12 @@
         <nav class="navbar navbar-default container">
             <p class="navbar-text h2">Proyecto Libreria</p>
             <div class="col-lg-offset-9">
-                <form id="header-form" action="index.jsp" method="get">
+                <form id="header-form" class="col-lg-4" action="index.jsp" method="get">
                     <button id="btnHeaderLogin" class="btn btn-default btn-lg navbar-btn" 
-                            name="btnHeader" type="submit" value="login">Iniciar Sesión</button>
-                    <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn" name="btnHeader"
-                            type="button" value="btnPerfil">Perfil</button>
+                            name="btnHeader" type="submit" value="login">Iniciar Sesion</button>
                 </form>
+                <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn col-lg-4 col-lg-offset-3" name="btnHeader"
+                            type="button" value="btnPerfil">Perfil</button>
             </div>
         </nav>
         <div class="container">
