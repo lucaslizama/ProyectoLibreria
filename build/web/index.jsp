@@ -90,11 +90,18 @@
                                    placeholder="Contraseña">
                         </div>
                     </div>
-                    <div class="col-lg-offset-4 col-lg-1">
+                    <div class="col-lg-offset-2 col-lg-10">
                         <button id="btnLogin" class="btn btn-default btn-lg" 
                                 type="submit" name="btnLogin" 
                                 value="login">Ingresar</button>
+                        <button id="btnRegistroRedirect" class="btn btn-default btn-lg"
+                                type="button" name="btnRegistroRedirect">Registrarse</button>
                     </div>
+                    <script>
+                        $("#btnRegistroRedirect").click(function(){
+                            window.location = "registro.jsp";
+                        });
+                    </script>
                 </form>
             </fieldset>
         </div>       
@@ -109,7 +116,7 @@
                     <button id="btnHeaderLogin" class="btn btn-default btn-lg navbar-btn" 
                             name="btnHeader" type="submit" value="login">Iniciar Sesión</button>
                     <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn" name="btnHeader"
-                            type="submit" value="btnPerfil">Perfil</button>
+                            type="button" value="btnPerfil">Perfil</button>
                 </form>
             </div>
         </nav>
@@ -163,12 +170,17 @@
                 <p id="txtBienvenida" class="navbar-text">Bienvenido <%=actual.getUsername()%></p>
             </div>
             <div class="col-lg-offset-9">
-                <form id="header-form" action="index.jsp" method="get">
-                    <button id="btnHeaderLogin" class="btn btn-default btn-lg navbar-btn" 
-                            name="btnHeader" type="submit" value="login">Iniciar Sesión</button>
-                    <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn" name="btnHeader"
-                            type="submit" value="btnPerfil">Perfil</button>
+                <form id="header-form" class="col-lg-4" action="Logout" method="get">
+                    <button id="btnHeaderLogout" class="btn btn-default btn-lg navbar-btn" 
+                            name="btnHeader" type="submit" value="logout">Cerrar Sesión</button>
                 </form>
+                <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn col-lg-4 col-lg-offset-3" name="btnHeader"
+                            type="button" value="btnPerfil">Perfil</button>
+                <script>
+                    $("#btnPerfil").click(function(){
+                        window.location = "perfil.jsp";
+                    });
+                </script>
             </div>
         </nav>
         <div id="cuerpo" class="container">

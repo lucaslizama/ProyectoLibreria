@@ -180,7 +180,7 @@ public class Usuario {
                     "INSERT INTO usuario VALUES('" + username + "','" + password +
                     "','" + primerNombre + "','" + segundoNombre + 
                     "','" + apellidoPaterno + "','" + apellidoMaterno +
-                    "','" + fechaNacimiento + "','" + administrador + "');");
+                    "','" + fechaNacimiento + "'," + 0 + ");");
             controlador.getConexion().conectar();
             controlador.getConexion().cerrar();
             return true;
