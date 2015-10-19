@@ -115,14 +115,14 @@ public class Usuario {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-    
+
     /**
      * @return the administrador
      */
     public boolean isAdministrador() {
         return administrador;
     }
-    
+
     /**
      * @param administrador the administrador to set
      */
@@ -140,34 +140,20 @@ public class Usuario {
     }
 
     public final boolean leer() {
-        ControladorLibreria controlador = new ControladorLibreria();
-        controlador.configurarConexion("usuario", true);
-        controlador.getConexion().setCadenaSQL("SELECT * from usuario;");
-        controlador.getConexion().conectar();
-        ResultSet resultados = controlador.getConexion().getDbResultSet();
+        List<Usuario> usuarios = buscarUsuarios();
 
-        try {
-            while (resultados.next()) {
-                if (resultados.getString("username").equals(this.username)) {
-                    password = resultados.getString("password");
-                    primerNombre = resultados.getString("primer_nombre");
-                    segundoNombre = resultados.getString("segundo_nombre");
-                    apellidoPaterno = resultados.getString("apellido_paterno");
-                    apellidoMaterno = resultados.getString("apellido_materno");
-                    fechaNacimiento = resultados.getDate("fecha_nacimiento");
-                    administrador = resultados.getBoolean("administrador");
-                    controlador.getConexion().cerrar();
-                    return true;
-                } else {
-                    controlador.getConexion().cerrar();
-                    return false;
-                }
+        for (Usuario user : usuarios) {
+            if (user.username.equals(username)) {
+                password = user.getPassword();
+                primerNombre = user.getPrimerNombre();
+                segundoNombre = user.getSegundoNombre();
+                apellidoPaterno = user.getApellidoPaterno();
+                apellidoMaterno = user.getApellidoMaterno();
+                fechaNacimiento = user.getFechaNacimiento();
+                administrador = user.isAdministrador();
+                return true;
             }
-        } catch (Exception ex) {
-            controlador.getConexion().cerrar();
-            System.out.println("Error SQL: " + ex.getMessage());
         }
-        controlador.getConexion().cerrar();
         return false;
     }
 
@@ -176,10 +162,10 @@ public class Usuario {
             ControladorLibreria controlador = new ControladorLibreria();
             controlador.configurarConexion("usuario", false);
             controlador.getConexion().setCadenaSQL(
-                    "INSERT INTO usuario VALUES('" + username + "','" + password +
-                    "','" + primerNombre + "','" + segundoNombre + 
-                    "','" + apellidoPaterno + "','" + apellidoMaterno +
-                    "','" + fechaNacimiento + "'," + 0 + ");");
+                    "INSERT INTO usuario VALUES('" + username + "','" + password
+                    + "','" + primerNombre + "','" + segundoNombre
+                    + "','" + apellidoPaterno + "','" + apellidoMaterno
+                    + "','" + fechaNacimiento + "'," + 0 + ");");
             controlador.getConexion().conectar();
             controlador.getConexion().cerrar();
             return true;
@@ -206,10 +192,16 @@ public class Usuario {
 
         try {
             while (resultados.next()) {
-                Usuario user = new Usuario(resultados.getString("username"));
-                if (user.leer()) {
-                    usuarios.add(user);
-                }
+                Usuario user = new Usuario();
+                user.setUsername(resultados.getString("username"));
+                user.setPassword(resultados.getString("password"));
+                user.setPrimerNombre(resultados.getString("primer_nombre"));
+                user.setSegundoNombre(resultados.getString("segundo_nombre"));
+                user.setApellidoPaterno(resultados.getString("apellido_paterno"));
+                user.setApellidoMaterno(resultados.getString("apellido_materno"));
+                user.setFechaNacimiento(resultados.getDate("fecha_nacimiento"));
+                user.setAdministrador(resultados.getBoolean("administrador"));
+                usuarios.add(user);
             }
         } catch (Exception ex) {
             System.out.println("Error SQL: " + ex.getMessage());

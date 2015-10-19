@@ -23,7 +23,7 @@
             <div class="col-lg-offset-5">
                 <p id="txtBienvenida" class="navbar-text"></p>
             </div>
-            <div class="col-lg-offset-9">
+            <div class="col-lg-offset-0">
                 <div class="col-lg-offset-9">
                 <form id="header-form" class="col-lg-4" action="index.jsp" method="get">
                     <button id="btnHeaderLogin" class="btn btn-default btn-lg navbar-btn" 
@@ -33,7 +33,9 @@
                             type="button" value="btnPerfil">Perfil</button>
                 </div>
                 <script>
-                    
+                    $("#btnPerfil").click(function(){
+                       window.location = "index.jsp?btnHeader=login";
+                    });
                 </script>
             </div>
         </nav>
@@ -62,20 +64,24 @@
         <%
                 } else {
                     if (request.getParameter("btnHeader") != null) {
-                        if (request.getParameter("btnHeader").equals("login") 
-                                || request.getParameter("btnHeader").equals("perfil")){
+                        if (request.getParameter("btnHeader").equals("login")){
                     
         %>
         <nav class="navbar navbar-default container">
             <p class="navbar-text h2">Proyecto Libreria</p>
-            <div class="col-lg-offset-9">
+            <div class="col-lg-offset-0">
                 <div class="col-lg-offset-9">
-                <form id="header-form" class="col-lg-4" action="index.jsp" method="get">
-                    <button id="btnHeaderLogin" class="btn btn-default btn-lg navbar-btn" 
-                            name="btnHeader" type="submit" value="login">Iniciar Sesion</button>
-                </form>
-                <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn col-lg-4 col-lg-offset-3" name="btnHeader"
-                            type="button" value="btnPerfil">Perfil</button>
+                    <form id="header-form" class="col-lg-4" action="index.jsp" method="get">
+                        <button id="btnHeaderLogin" class="btn btn-default btn-lg navbar-btn" 
+                                name="btnHeader" type="submit" value="login">Iniciar Sesion</button>
+                    </form>
+                    <button id="btnPerfil" class="btn btn-default btn-lg navbar-btn col-lg-4 col-lg-offset-3" name="btnHeader"
+                                type="button" value="btnPerfil">Perfil</button>
+                    <script>
+                        $("#btnPerfil").click(function(){
+                           window.location = "index.jsp?btnHeader=login";
+                        });
+                    </script>
                 </div>
             </div>
         </nav>
