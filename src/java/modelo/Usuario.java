@@ -179,7 +179,19 @@ public class Usuario {
     }
 
     public boolean eliminar() {
-        return false;
+        ControladorLibreria controlador = new ControladorLibreria();
+
+        try {
+            controlador.configurarConexion("usuario", false);
+            controlador.getConexion().setCadenaSQL("DELETE FROM usuario WHERE "
+                    + "username='" + username + "';");
+            controlador.getConexion().conectar();
+            controlador.getConexion().cerrar();
+            return true;
+        } catch (Exception ex) {
+            controlador.getConexion().cerrar();
+            return false;
+        }
     }
 
     public List<Usuario> buscarUsuarios() {

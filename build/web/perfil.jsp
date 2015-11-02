@@ -70,22 +70,40 @@
                                 StringBuilder sb = new StringBuilder();
                                 for (Usuario user : usuarios) {
                                     sb.append(
-                                            "<tr>" +
-                                                "<td>" + user.getUsername() + "</td>" +
-                                                "<td>" + user.getPassword() + "</td>" +
-                                                "<td>" + user.getPrimerNombre() + "</td>" +
-                                                "<td>" + user.getSegundoNombre() + "</td>" +
-                                                "<td>" + user.getApellidoPaterno() + "</td>" +
-                                                "<td>" + user.getApellidoMaterno() + "</td>" +
-                                                "<td>" + user.getFechaNacimiento() + "</td>" +
-                                                "<td>" + user.isAdministrador() + "</td>" +
-                                            "</tr>"
+                                            "<tr>"
+                                            + "<td>" + user.getUsername() + "</td>"
+                                            + "<td>" + user.getPassword() + "</td>"
+                                            + "<td>" + user.getPrimerNombre() + "</td>"
+                                            + "<td>" + user.getSegundoNombre() + "</td>"
+                                            + "<td>" + user.getApellidoPaterno() + "</td>"
+                                            + "<td>" + user.getApellidoMaterno() + "</td>"
+                                            + "<td>" + user.getFechaNacimiento() + "</td>"
+                                            + "<td>" + user.isAdministrador() + "</td>"
+                                            + "</tr>"
                                     );
                                 }
                             %>
                             <%=sb.toString()%>
                         </tbody>
                     </table>
+                    <div class="row">
+                        <input id="btnEliminarUsuario" class="btn btn-default" type="button" value="Eliminar">
+                        <input id="btnActualizarUsuario" class="btn btn-default" type="button" value="Actualizar">
+                        <input id="btnIngresarUsuario" class="btn btn-default" type="button" value="Ingresar">
+                        <script>
+                            $("#btnIngresarUsuario").click(function () {
+                                window.location = "ingresarUsuario.jsp";
+                            });
+                            $("#btnEliminarUsuario").click(function () {
+                                var username = $(".selected")[0].children[0].innerHTML;
+                                if (username === "<%=actual.getUsername()%>") {
+                                    alert("No puedes eliminarte a ti mismo!");
+                                } else {
+                                    window.location = "EliminarUsuario?username=" + username;
+                                }
+                            });
+                        </script>
+                    </div>
                 </div>
                 <div id="tab-perfil">
                     <p>TODO Perfil del usuario Administrador</p>
@@ -95,7 +113,7 @@
         <script>
             $("#tabs").tabs();
             $("#tabla-usuarios").DataTable({
-                select: true
+                select: "single"
             });
         </script>
         <%
@@ -111,6 +129,6 @@
         </script>
         <%
             }//Fin no hay usuario loggeado.
-%>
+        %>
     </body>
 </html>
